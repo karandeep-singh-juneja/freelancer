@@ -69,7 +69,7 @@ def regUser(request):
 def landingPage(request):
     ''' Function to render the home page of the website '''
 
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         if request.user.first_name == 'freelancer':
             return HttpResponseRedirect('/freelancer')
         else:

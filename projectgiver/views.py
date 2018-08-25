@@ -95,7 +95,7 @@ def render_page(request):
 def notification_project_poster(request):
     ''' Function which searches for notifications for a Project Giver '''
 
-    project_poster = ProjectGiver.objects.filter(account=request.user)
+    project_poster = ProjectGiver.objects.filter(account=request.user)[0]
     noti_obj = Notification.objects.filter(
         project_poster=project_poster, seen_status='project_poster_unseen')
     noti_list = []

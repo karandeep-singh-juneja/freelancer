@@ -377,6 +377,10 @@ var add = function() {
     var pro_name = $('input[name="Title"]').val();
     var budget = $('input[name="budget"]').val();
     var deadline = $('input[name="deadline"]').val();
+    var year=deadline.substr(0, 4)
+    var month=deadline.substr(5, 2)
+    var date=deadline.substr(8, 2)
+    deadline = date + "/" + month + "/" + year
     var selected = $('#options').val();
     var description = $('textarea[name="description"]').val();
     if ((/^[a-zA-Z ]+$/.test(pro_name) == false) || pro_name == "") {

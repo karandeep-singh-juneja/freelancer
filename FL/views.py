@@ -118,7 +118,7 @@ def skills(request):
 def search_render(request):
     ''' Redirects to search page for searching projects '''
 
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         return render(request, 'search.html')
     else:
         return HttpResponseRedirect('/#login')
@@ -153,7 +153,7 @@ def search_skill(request):
     for obj in proj_obj1:
         skil = ProjectSkills.objects.filter(
             projectid=obj).values_list('skill__skillname', flat=True)
-        if Bid.objects.filter(freelancer=Freelancer.objects.filter(account=request.user), project=obj):
+        if Bid.objects.filter(freelancer=Freelancer.objects.filter(account=request.user)[0], project=obj):
             buttonVal = "disabled"
         else:
             buttonVal = ''
@@ -179,7 +179,7 @@ def add_skill(request):
 def notification_freelancer(request):
     ''' Function to check for notifications for a Freelancer '''
 
-    freelancer = Freelancer.objects.filter(account=request.user)
+    freelancer = Freelancer.objects.filter(account=request.user)[0]
     noti_obj = Notification.objects.filter(
         freelancer=freelancer, seen_status='freelancer_unseen')
     noti_list = []
